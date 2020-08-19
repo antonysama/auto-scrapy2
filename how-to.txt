@@ -1,0 +1,20 @@
+#To docker-compose for scrape, db or both (they can b commented out)
+apt-get install openssl
+export LD_LIBRARY_PATH="/usr/local/lib"
+docker-compose up --build (or docker-compose up)
+sudo cp ./scrape/f1.csv ./db/
+
+# To connect to table (docker ps to check container name)
+docker exec -it auto-scrapy2_db_1 psql -U postgres 
+DROP TABLE IF EXISTS public.table
+CREATE TABLE public.table (id SERIAL, date DATE, title varchar (300), source varchar(50), link varchar(300));
+COPY public.table FROM '/var/lib/postgresql/data/f1.csv' WITH CSV HEADER;
+
+#To create & run script 
+SELECT title, CASE WHEN title ~*'invest' THEN '1' ELSE '' END AS capital, CASE WHEN title ~*'legal' THEN '1' ELSE '' END AS regulations, CASE WHEN title ~*'robot|tech' THEN '1' else '' END AS innov
+ation, CASE WHEN title ~*'tax' THEN '1' else '' END AS tax  FROM public.table LIMIT 30;
+
+
+(after nano script.sql) postgres=# \i /var/lib/postgresql/data/testscript.sql
+
+#docker-compose -f stack.yml down
