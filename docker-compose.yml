@@ -1,9 +1,9 @@
 version: '3.1'
 services:
-    # app:
-    #     build: .
-    #     volumes:
-    #         - $PWD/scrape:/app
+    app:
+        build: .
+        volumes:
+            - $PWD/scrape:/app
 
     db:
         image: postgres:alpine
@@ -14,8 +14,8 @@ services:
             POSTGRES_PASSWORD: password
         volumes:
             - $PWD/db:/var/lib/postgresql/data
-        # depends_on:
-        #     - app
+        depends_on:
+            - app
     
     adminer:
         image: adminer

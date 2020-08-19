@@ -1,12 +1,14 @@
 #To docker-compose for scrape, db or both (they can b commented out)
+cat f1.csv > f1bkp.csv #overrites 2nd with 1st
 apt-get install openssl
 export LD_LIBRARY_PATH="/usr/local/lib"
+#sudo rm -rf db and comment out db before running scrape 
 docker-compose up --build (or docker-compose up)
 sudo cp ./scrape/f1.csv ./db/
 
 # To connect to table (docker ps to check container name)
 docker exec -it auto-scrapy2_db_1 psql -U postgres 
-DROP TABLE IF EXISTS public.table
+DROP TABLE IF EXISTS public.table;
 CREATE TABLE public.table (id SERIAL, date DATE, title varchar (300), source varchar(50), link varchar(300));
 COPY public.table FROM '/var/lib/postgresql/data/f1.csv' WITH CSV HEADER;
 
