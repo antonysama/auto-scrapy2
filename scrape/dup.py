@@ -14,11 +14,11 @@ df1=df1[~df1['date'].str.contains('date')] #row cleaning
 df1=df1[~df1['date'].str.contains('date')]
 
 ##concat f w. f1
-concat=pd.concat([df,df1], sort=True)
+c=pd.concat([df,df1], sort=True)
 
 ##removing duplicates
-c = concat.sort_values('date', ascending=False)
-c = concat.drop_duplicates(subset='title', keep='last')
+c = c.sort_values('date', ascending=False)
+c = c.drop_duplicates(subset='title', keep='last')
 
 ##reorder cols
 c=c[['date', 'title','source','link']]

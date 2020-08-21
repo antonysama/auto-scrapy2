@@ -3,7 +3,7 @@ services:
     app:
         build: .
         volumes:
-            - $PWD/scrape:/app
+            - ./scrape:/app
 
     db:
         image: postgres:alpine
@@ -12,11 +12,12 @@ services:
             POSTGRES_DB: postgres
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
+            PGDATA: /tmp
         volumes:
-            - $PWD/db:/var/lib/postgresql/data
+            - ./scrape:/var/lib/postgresql/data/scrape
         depends_on:
             - app
-    
+
     adminer:
         image: adminer
         restart: always  
@@ -25,5 +26,6 @@ services:
         ports:
             - 8080:8080
 
-              
+volumes:
+    scrape:              
         

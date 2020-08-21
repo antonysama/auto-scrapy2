@@ -10,8 +10,7 @@ sudo cp ./scrape/f1.csv ./db/
 docker exec -it auto-scrapy2_db_1 psql -U postgres 
 DROP TABLE IF EXISTS public.table;
 CREATE TABLE public.table (id SERIAL, date DATE, title varchar (300), source varchar(50), link varchar(300));
-COPY public.table FROM '/var/lib/postgresql/data/f1.csv' WITH CSV HEADER;
-
+COPY public.table FROM '/var/lib/postgresql/data/scrape/f1.csv' WITH CSV HEADER;
 #To create & run script 
 SELECT title, CASE WHEN title ~*'invest' THEN '1' ELSE '' END AS capital, CASE WHEN title ~*'legal' THEN '1' ELSE '' END AS regulations, CASE WHEN title ~*'robot|tech' THEN '1' else '' END AS innov
 ation, CASE WHEN title ~*'tax' THEN '1' else '' END AS tax  FROM public.table LIMIT 30;
