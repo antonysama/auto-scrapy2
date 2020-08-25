@@ -2,7 +2,6 @@
 cat f1.csv > f1bkp.csv #overrites 2nd with 1st
 apt-get install openssl
 export LD_LIBRARY_PATH="/usr/local/lib"
-#sudo rm -rf db and comment out db before running scrape 
 docker-compose up --build (or docker-compose up)
 sudo cp ./scrape/f1.csv ./db/
 
