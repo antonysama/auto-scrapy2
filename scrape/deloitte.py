@@ -14,5 +14,5 @@ class DeloitteSpider(scrapy.Spider):
                   'title': quote.xpath('.//h2/text()').get(),
                   'date': str(date.today()),
                   'source':'Deloitte',
-                  'link': quote.xpath('.//parent::div/parent::a/@href').get(),
+                  'link': response.urljoin(quote.xpath('.//parent::div/parent::a/@href').get(),
             }
