@@ -7,12 +7,12 @@ class GlobeSpider(scrapy.Spider):
     start_urls = ['https://www.theglobeandmail.com/business']
 
     def parse(self, response):
-        quotes = response.xpath('//*[@class="c-card__hed-text"]')
+        quotes = response.xpath('//*[@class="c-card"]')
         
         for quote in quotes:
             yield {
-                  'title': quote.xpath('.//text()').get(),
+                  'title': quote.xpath('.//a/div/div/div/text()').get(),
                   'date': str(date.today()),
                   'source':'Globe', 
-                  'link': 'na'
+                  'link': response.urljoin(quote.xpath('.//a/@href').get()),
             }
