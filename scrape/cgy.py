@@ -13,5 +13,5 @@ class CgySpider(scrapy.Spider):
                   'title': quote.xpath('.//text()').getall(),
                   'date': str(date.today()),
                   'source':'Calgary_Herald',
-                  'link': 'na',
+                  'link': response.urljoin(quote.xpath('.//parent::h2/parent::a/@href').get()),
             }
