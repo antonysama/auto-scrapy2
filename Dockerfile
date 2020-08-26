@@ -15,6 +15,9 @@ CMD bash -c "scrapy runspider edm.py -o f.csv \
     ; scrapy runspider cboc.py  -o f.csv \
     ; scrapy runspider cdh.py  -o f.csv \
     ; scrapy runspider deloitte.py -o f.csv \
+    ; scrapy runspider mckinsey.py -o f.csv\
+    ; scrapy runspider hilltimes.py -o f.csv\
+    ; scrapy runspider betakit.py -o f.csv\
     && python dup.py\
     && python some.py\
 "
