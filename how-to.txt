@@ -2,12 +2,12 @@
 cat f1.csv > f1bkp.csv #overrites 2nd with 1st
 apt-get install openssl
 export LD_LIBRARY_PATH="/usr/local/lib"
-docker-compose up --build (or docker-compose up)
+docker-compose up
 
 # To connect to table (docker ps to check container name)
 docker exec -it auto-scrapy2_db_1 psql -U postgres 
 DROP TABLE IF EXISTS public.table;
-CREATE TABLE public.table (id SERIAL, date DATE, title varchar (300), source varchar(50), link varchar(300));
+CREATE TABLE public.table (id SERIAL, date DATE, title varchar (350), source varchar(100), link varchar(300));
 COPY public.table FROM '/var/lib/postgresql/data/scrape/f1.csv' WITH CSV HEADER;
 #To create & run script 
 SELECT title, CASE WHEN title ~*'invest' THEN '1' ELSE '' END AS capital, CASE WHEN title ~*'legal' THEN '1' ELSE '' END AS regulations, CASE WHEN title ~*'robot|tech' THEN '1' else '' END AS innov
