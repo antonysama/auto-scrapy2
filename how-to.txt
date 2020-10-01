@@ -3,12 +3,10 @@ apt-get install openssl
 export LD_LIBRARY_PATH="/usr/local/lib"
 docker-compose up
 
-# To connect to table (docker ps to check container name)
+# To connect to table 
 docker exec -it auto-scrapy2_db_1 psql -U postgres 
-CREATE TABLE public.table3 (id SERIAL, date DATE, title varchar (350), source varchar(200), link varchar(300));
-
-COPY public.table3 FROM '/var/lib/postgresql/data/scrape/f1.csv' WITH CSV HEADER;
-
+CREATE TABLE public.table (id SERIAL, date DATE, title varchar (350), source varchar(200), link varchar(300));
+COPY public.table FROM '/var/lib/postgresql/data/scrape/f1.csv' WITH CSV HEADER;
 #To clean up
 docker-compose down
 
