@@ -5,16 +5,11 @@ docker-compose up
 
 # To connect to table 
 docker exec -it auto-scrapy2_db_1 psql -U postgres 
-CREATE TABLE public.table (id SERIAL, date DATE, title varchar (350), source varchar(200), link varchar(300));
-COPY public.table FROM '/var/lib/postgresql/data/scrape/f1.csv' WITH CSV HEADER;
+
+#To run script: 
+\i /var/lib/postgresql/data/scrape/script.sql
+
 #To clean up
 docker-compose down
 
-#To create & run script 
-SELECT date, title, source, link FROM public.table WHERE date>'2020-08-26' 
-AND title ~* 'stimulus|recover|job|labour|sector|invest|economy|pandemic|alumin|covid|tech|policy|govern' ORDER BY date DESC; 
 
-
-SELECT date, title, source, link FROM public.table WHERE title ~* 'alum|tariff|232|steel' ORDER BY date DESC; 
-
-To run script: postgres=# \i /var/lib/postgresql/data/scrape/script.sql
