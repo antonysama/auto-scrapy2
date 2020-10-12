@@ -22,7 +22,7 @@ c = c.drop_duplicates(subset='title', keep='last')
 
 ##reorder cols
 c=c[['date', 'title','source','link']]
-print(c.head(5))
+# print(c.head(5))
 
 #save
-c.to_csv('f1.csv')
+c.to_csv('f1.csv', index=False)
