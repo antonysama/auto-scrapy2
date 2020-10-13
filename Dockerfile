@@ -19,5 +19,6 @@ CMD bash -c "scrapy runspider edm.py -o f.csv \
     ; scrapy runspider hilltimes.py -o f.csv\
     ; scrapy runspider betakit.py -o f.csv\
     && python dup.py\
+    && python some.py\
 "
 
